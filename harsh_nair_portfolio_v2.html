@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harsh Nair — Security Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#04080f;
+  --navy2:#070e1a;
+  --navy3:#0b1525;
+  --blue:#1a6cff;
+  --blue2:#4d8fff;
+  --blue3:#0a2a5e;
+  --frost:#e8f0ff;
+  --frost2:#a8c0f0;
+  --frost3:#6888c0;
+  --white:#ffffff;
+  --dim:#344860;
+  --dim2:#1e2e44;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);
+  color:var(--frost);
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(26,108,255,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(26,108,255,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 30% 30% at 90% 85%, rgba(77,143,255,0.06) 0%, transparent 50%);
+  pointer-events:none;
+  z-index:0;
+}
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(1px 1px at 15% 12%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 32% 28%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 55% 8%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 22%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 22% 70%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 44% 82%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 66% 65%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 72%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 92%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 38% 48%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 72% 88%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 35%, rgba(180,200,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 15%, rgba(180,200,255,0.5) 0%, transparent 100%);
+  pointer-events:none;
+  z-index:0;
+}
+nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:100;
+  padding:0 7%;
+  height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(4,8,15,0.6);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(26,108,255,0.15);
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;
+  font-weight:800;font-size:16px;
+  color:var(--white);letter-spacing:1px;
+}
+.nav-logo span{color:var(--blue2);}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--frost3);
+  text-decoration:none;letter-spacing:1.5px;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--frost);}
+section{position:relative;z-index:2;}
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:68px 7% 0;
+  position:relative;overflow:hidden;
+}
+.hero-orb{
+  position:absolute;right:4%;top:50%;
+  transform:translateY(-50%);
+  width:480px;height:480px;
+  opacity:0.85;pointer-events:none;
+}
+.hero-left{max-width:580px;}
+.eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:3px;
+  color:var(--blue2);margin-bottom:28px;
+  display:flex;align-items:center;gap:12px;
+}
+.eyebrow-line{display:inline-block;width:28px;height:1px;background:var(--blue2);}
+h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(44px,6vw,80px);
+  font-weight:800;line-height:1.0;
+  color:var(--white);letter-spacing:-2px;margin-bottom:6px;
+}
+.name-line2{
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(77,143,255,0.7);
+  display:block;
+}
+.hero-role{
+  font-family:'DM Mono',monospace;
+  font-size:13px;color:var(--frost3);
+  letter-spacing:2px;margin:24px 0 20px;
+}
+.hero-desc{
+  font-size:16px;color:var(--frost3);
+  line-height:1.85;max-width:480px;
+  margin-bottom:48px;font-weight:300;
+}
+.hero-desc strong{color:var(--frost2);font-weight:400;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-fill{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:2px;
+  padding:13px 30px;
+  background:var(--blue);border:1px solid var(--blue);
+  color:var(--white);text-decoration:none;
+  transition:background 0.25s,border-color 0.25s;border-radius:2px;
+}
+.btn-fill:hover{background:#1558e0;border-color:#1558e0;}
+.btn-outline{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:2px;
+  padding:13px 30px;
+  background:transparent;border:1px solid var(--dim2);
+  color:var(--frost3);text-decoration:none;
+  transition:border-color 0.25s,color 0.25s;border-radius:2px;
+}
+.btn-outline:hover{border-color:var(--frost3);color:var(--frost);}
+.section-inner{max-width:1080px;margin:0 auto;padding:110px 6%;}
+.s-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:4px;
+  color:var(--blue2);margin-bottom:14px;opacity:0.8;
+}
+h2{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(26px,3.5vw,42px);
+  font-weight:800;color:var(--white);
+  letter-spacing:-1px;margin-bottom:56px;line-height:1.1;
+}
+#about{border-top:1px solid rgba(26,108,255,0.12);}
+.about-layout{display:grid;grid-template-columns:1.1fr 0.9fr;gap:72px;align-items:start;}
+.about-body p{color:var(--frost3);font-size:16px;line-height:1.85;margin-bottom:22px;font-weight:300;}
+.about-body p strong{color:var(--frost2);font-weight:400;}
+.stat-row{display:flex;gap:0;margin-top:40px;border:1px solid var(--dim2);}
+.stat{flex:1;padding:20px 24px;border-right:1px solid var(--dim2);}
+.stat:last-child{border-right:none;}
+.stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--white);line-height:1;margin-bottom:6px;}
+.stat-num span{color:var(--blue2);}
+.stat-lbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--frost3);}
+.identity-card{background:var(--navy2);border:1px solid var(--dim2);overflow:hidden;}
+.ic-top{padding:28px 28px 24px;border-bottom:1px solid var(--dim2);}
+.ic-avatar{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--blue3);border:2px solid rgba(77,143,255,0.3);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;
+  font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--blue2);
+}
+.ic-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.ic-title{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1.5px;color:var(--frost3);}
+.ic-rows{padding:0 28px;}
+.ic-row{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid rgba(26,108,255,0.08);}
+.ic-row:last-child{border-bottom:none;}
+.ic-icon{width:28px;height:28px;background:var(--dim2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;}
+.ic-text{font-size:13px;color:var(--frost3);font-weight:300;}
+.ic-text strong{color:var(--frost2);font-weight:400;}
+#skills{border-top:1px solid rgba(26,108,255,0.12);background:rgba(7,14,26,0.6);}
+.skills-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--dim2);border:1px solid var(--dim2);}
+.skill-block{background:var(--navy2);padding:30px 28px;transition:background 0.2s;}
+.skill-block:hover{background:var(--navy3);}
+.sk-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--blue2);margin-bottom:16px;}
+.sk-tags{display:flex;flex-wrap:wrap;gap:7px;}
+.sk-tag{font-family:'DM Mono',monospace;font-size:11px;padding:5px 12px;background:var(--navy);border:1px solid var(--dim2);color:var(--frost3);border-radius:2px;transition:border-color 0.2s,color 0.2s;}
+.skill-block:hover .sk-tag{border-color:rgba(26,108,255,0.25);color:var(--frost2);}
+#projects{border-top:1px solid rgba(26,108,255,0.12);}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1px;background:var(--dim2);border:1px solid var(--dim2);}
+.proj-card{background:var(--navy2);padding:32px 28px;text-decoration:none;color:inherit;display:block;position:relative;transition:background 0.2s;overflow:hidden;}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform 0.35s ease;}
+.proj-card:hover{background:var(--navy3);}
+.proj-card:hover::before{transform:scaleX(1);}
+.proj-idx{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--dim);margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;}
+.proj-arrow{color:var(--dim);font-size:14px;transition:color 0.2s,transform 0.2s;}
+.proj-card:hover .proj-arrow{color:var(--blue2);transform:translate(3px,-3px);}
+.proj-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--white);letter-spacing:0.5px;margin-bottom:12px;}
+.proj-desc{font-size:13px;color:var(--frost3);line-height:1.75;font-weight:300;margin-bottom:22px;}
+.proj-badge{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;padding:4px 10px;background:var(--blue3);border:1px solid rgba(26,108,255,0.3);color:var(--blue2);border-radius:2px;display:inline-block;}
+#contact{border-top:1px solid rgba(26,108,255,0.12);background:rgba(7,14,26,0.6);}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
+.contact-p{font-size:16px;color:var(--frost3);line-height:1.85;margin-bottom:36px;font-weight:300;}
+.clinks{display:flex;flex-direction:column;gap:10px;}
+.clink{display:flex;align-items:center;gap:16px;text-decoration:none;padding:16px 20px;background:var(--navy2);border:1px solid var(--dim2);color:var(--frost3);transition:border-color 0.2s,background 0.2s;}
+.clink:hover{border-color:rgba(26,108,255,0.35);background:var(--navy3);}
+.clink-badge{font-family:'DM Mono',monospace;font-size:10px;padding:5px 8px;background:var(--dim2);color:var(--frost3);letter-spacing:1px;flex-shrink:0;}
+.clink-text{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.5px;color:var(--frost3);}
+.clink:hover .clink-text{color:var(--frost2);}
+.status-panel{background:var(--navy2);border:1px solid var(--dim2);}
+.sp-head{padding:18px 24px;border-bottom:1px solid var(--dim2);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--frost3);display:flex;align-items:center;gap:10px;}
+.sp-pulse{width:6px;height:6px;border-radius:50%;background:var(--blue2);box-shadow:0 0 8px var(--blue2);animation:ppulse 2.5s ease infinite;}
+@keyframes ppulse{0%,100%{opacity:1}50%{opacity:0.35}}
+.sp-row{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid rgba(26,108,255,0.07);font-size:12px;}
+.sp-row:last-child{border-bottom:none;}
+.sp-k{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--dim);}
+.sp-v{color:var(--frost2);font-weight:400;}
+.sp-v.on{color:var(--blue2);}
+footer{text-align:center;padding:44px;border-top:1px solid rgba(26,108,255,0.1);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--dim);position:relative;z-index:2;}
+footer span{color:var(--blue2);}
+@media(max-width:780px){
+  .about-layout,.contact-layout{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  h1{font-size:40px;}
+  .hero-orb{display:none;}
+  .stat-row{flex-direction:column;}
+  .stat{border-right:none;border-bottom:1px solid var(--dim2);}
+  .stat:last-child{border-bottom:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">HARSH<span>.</span>NAIR</div>
+  <ul class="nav-links">
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#skills">SKILLS</a></li>
+    <li><a href="#projects">PROJECTS</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <svg class="hero-orb" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="240" cy="240" r="200" stroke="rgba(26,108,255,0.15)" stroke-width="1"/>
+    <circle cx="240" cy="240" r="160" stroke="rgba(26,108,255,0.1)" stroke-width="0.5"/>
+    <circle cx="240" cy="240" r="120" stroke="rgba(77,143,255,0.12)" stroke-width="1"/>
+    <circle cx="240" cy="240" r="80" stroke="rgba(77,143,255,0.1)" stroke-width="0.5"/>
+    <circle cx="240" cy="240" r="40" stroke="rgba(77,143,255,0.2)" stroke-width="1"/>
+    <circle cx="240" cy="240" r="6" fill="rgba(77,143,255,0.6)"/>
+    <ellipse cx="240" cy="240" rx="200" ry="60" stroke="rgba(26,108,255,0.08)" stroke-width="0.5" transform="rotate(-20 240 240)"/>
+    <ellipse cx="240" cy="240" rx="200" ry="60" stroke="rgba(26,108,255,0.06)" stroke-width="0.5" transform="rotate(40 240 240)"/>
+    <line x1="240" y1="40" x2="240" y2="440" stroke="rgba(26,108,255,0.07)" stroke-width="0.5"/>
+    <line x1="40" y1="240" x2="440" y2="240" stroke="rgba(26,108,255,0.07)" stroke-width="0.5"/>
+    <circle cx="240" cy="80" r="3" fill="rgba(77,143,255,0.5)"/>
+    <circle cx="390" cy="155" r="2" fill="rgba(77,143,255,0.4)"/>
+    <circle cx="390" cy="325" r="3" fill="rgba(26,108,255,0.6)"/>
+    <circle cx="240" cy="400" r="2" fill="rgba(77,143,255,0.3)"/>
+    <circle cx="90" cy="325" r="3" fill="rgba(77,143,255,0.5)"/>
+    <circle cx="90" cy="155" r="2" fill="rgba(26,108,255,0.4)"/>
+  </svg>
+  <div class="hero-left">
+    <div class="eyebrow"><span class="eyebrow-line"></span>SECURITY ENGINEER</div>
+    <h1>HARSH<span class="name-line2">NAIR</span></h1>
+    <div class="hero-role">// THREAT DETECTION &middot; IDS/IPS &middot; PYTHON SECURITY TOOLS</div>
+    <p class="hero-desc">Building <strong>proactive defense systems</strong> and intelligent security tooling. Specializing in intrusion detection, LotL attack prevention, and keeping adversaries out of systems they don't belong in.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-fill">VIEW PROJECTS</a>
+      <a href="#contact" class="btn-outline">GET IN TOUCH</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-inner">
+    <div class="s-label">01 &mdash; ABOUT</div>
+    <h2>Who I Am</h2>
+    <div class="about-layout">
+      <div class="about-body">
+        <p>I'm a <strong>cybersecurity engineer</strong> focused on building tools that detect and neutralize threats before they escalate &mdash; combining deep systems knowledge with a real attacker's mindset.</p>
+        <p>My work spans intrusion detection and prevention systems, file integrity monitoring, machine learning for data analysis, and <strong>open-source contributions at enterprise scale</strong>.</p>
+        <p>Most recently, I implemented a <strong>LotL prevention policy template</strong> that was merged into Microsoft's agent-governance-toolkit &mdash; shipped directly to Microsoft's main branch via PR #949.</p>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-num">5<span>+</span></div><div class="stat-lbl">PROJECTS</div></div>
+          <div class="stat"><div class="stat-num">1<span>&#x2197;</span></div><div class="stat-lbl">MICROSOFT PR</div></div>
+          <div class="stat"><div class="stat-num">&#x221E;</div><div class="stat-lbl">CURIOSITY</div></div>
+        </div>
+      </div>
+      <div class="identity-card">
+        <div class="ic-top">
+          <div class="ic-avatar">HN</div>
+          <div class="ic-name">Harsh Nair</div>
+          <div class="ic-title">SECURITY ENGINEER</div>
+        </div>
+        <div class="ic-rows">
+          <div class="ic-row"><div class="ic-icon">&#x1F6E1;</div><div class="ic-text"><strong>Specialization</strong><br>IDS/IPS &middot; LotL Defense</div></div>
+          <div class="ic-row"><div class="ic-icon">&#x1F40D;</div><div class="ic-text"><strong>Primary Language</strong><br>Python</div></div>
+          <div class="ic-row"><div class="ic-icon">&#x1F310;</div><div class="ic-text"><strong>OSS</strong><br>Microsoft Contributor</div></div>
+          <div class="ic-row"><div class="ic-icon">&#x1F4CD;</div><div class="ic-text"><strong>Based In</strong><br>India</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-inner">
+    <div class="s-label">02 &mdash; ARSENAL</div>
+    <h2>Skills &amp; Tools</h2>
+    <div class="skills-list">
+      <div class="skill-block">
+        <div class="sk-label">DEFENSIVE SEC</div>
+        <div class="sk-tags">
+          <span class="sk-tag">IDS/IPS</span><span class="sk-tag">SIEM</span>
+          <span class="sk-tag">Threat Hunting</span><span class="sk-tag">LotL Defense</span>
+          <span class="sk-tag">Session Analysis</span><span class="sk-tag">Packet Interception</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="sk-label">LANGUAGES</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Python</span><span class="sk-tag">Bash</span>
+          <span class="sk-tag">YAML</span><span class="sk-tag">JSON</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="sk-label">DATA &amp; ML</div>
+        <div class="sk-tags">
+          <span class="sk-tag">scikit-learn</span><span class="sk-tag">Regression Models</span>
+          <span class="sk-tag">matplotlib</span><span class="sk-tag">NumPy</span><span class="sk-tag">pandas</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="sk-label">SYSTEMS</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Linux</span><span class="sk-tag">File Systems</span>
+          <span class="sk-tag">Networking</span><span class="sk-tag">Git</span><span class="sk-tag">OSS Workflow</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-inner">
+    <div class="s-label">03 &mdash; SELECTED WORK</div>
+    <h2>Projects</h2>
+    <div class="proj-grid">
+      <a href="https://github.com/harshnair75567-cloud/HS-IPS" target="_blank" class="proj-card">
+        <div class="proj-idx">01 &mdash; FEATURED <span class="proj-arrow">&#x2197;</span></div>
+        <div class="proj-name">HS-IPS</div>
+        <p class="proj-desc">A proactive, session-aware security engine protecting sensitive Linux environments from unauthorized data access and LotL attacks. Far beyond passive detection.</p>
+        <span class="proj-badge">PYTHON</span>
+      </a>
+      <a href="https://github.com/harshnair75567-cloud/complementary_ids" target="_blank" class="proj-card">
+        <div class="proj-idx">02 <span class="proj-arrow">&#x2197;</span></div>
+        <div class="proj-name">Complementary IDS</div>
+        <p class="proj-desc">Complements traditional IDS systems &mdash; intercepts suspicious traffic, sends decoy responses to attackers, and silently blacklists hostile IPs.</p>
+        <span class="proj-badge">PYTHON</span>
+      </a>
+      <a href="https://github.com/harshnair75567-cloud/PyHash" target="_blank" class="proj-card">
+        <div class="proj-idx">03 <span class="proj-arrow">&#x2197;</span></div>
+        <div class="proj-name">PyHash</div>
+        <p class="proj-desc">A file integrity monitoring script that routinely checks and alerts on any tampering &mdash; essential for detecting unauthorized changes in sensitive environments.</p>
+        <span class="proj-badge">PYTHON</span>
+      </a>
+      <a href="https://github.com/harshnair75567-cloud/agent-governance-toolkit" target="_blank" class="proj-card">
+        <div class="proj-idx">04 &mdash; MICROSOFT OSS <span class="proj-arrow">&#x2197;</span></div>
+        <div class="proj-name">Agent Governance Toolkit</div>
+        <p class="proj-desc">LotL prevention policy template merged into Microsoft's main branch (PR #949). Contributing to enterprise-grade AI agent governance infrastructure.</p>
+        <span class="proj-badge">OPEN SOURCE</span>
+      </a>
+      <a href="https://github.com/harshnair75567-cloud/colorimetric_analysis_using_machine_learning" target="_blank" class="proj-card">
+        <div class="proj-idx">05 <span class="proj-arrow">&#x2197;</span></div>
+        <div class="proj-name">Colorimetric ML Analysis</div>
+        <p class="proj-desc">A regression model that learns from user data, plots concentration curves, and identifies unknown concentrations &mdash; applied ML for precise scientific analysis.</p>
+        <span class="proj-badge">PYTHON &middot; ML</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="s-label">04 &mdash; CONTACT</div>
+    <h2>Let's Connect</h2>
+    <div class="contact-layout">
+      <div>
+        <p class="contact-p">Open to roles in cybersecurity, security engineering, and research. Whether it's a collaboration, an opportunity, or just a conversation about threat detection &mdash; reach out.</p>
+        <div class="clinks">
+          <a href="https://www.linkedin.com/in/harsh-nair-l-810039345" target="_blank" class="clink">
+            <span class="clink-badge">LI</span>
+            <span class="clink-text">linkedin.com/in/harsh-nair-l-810039345</span>
+          </a>
+          <a href="https://github.com/harshnair75567-cloud" target="_blank" class="clink">
+            <span class="clink-badge">GH</span>
+            <span class="clink-text">github.com/harshnair75567-cloud</span>
+          </a>
+        </div>
+      </div>
+      <div class="status-panel">
+        <div class="sp-head"><div class="sp-pulse"></div> SYSTEM STATUS</div>
+        <div class="sp-row"><span class="sp-k">AVAILABILITY</span><span class="sp-v on">OPEN TO WORK</span></div>
+        <div class="sp-row"><span class="sp-k">FOCUS</span><span class="sp-v">Cybersecurity</span></div>
+        <div class="sp-row"><span class="sp-k">SPECIALTY</span><span class="sp-v">IDS/IPS &middot; LotL</span></div>
+        <div class="sp-row"><span class="sp-k">OSS</span><span class="sp-v on">Active Contributor</span></div>
+        <div class="sp-row"><span class="sp-k">RESPONSE</span><span class="sp-v">&lt; 24 hours</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>HARSH<span>.</span>NAIR &mdash; SECURITY ENGINEER &mdash; 2025</footer>
+
+</body>
+</html>
